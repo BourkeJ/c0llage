@@ -4,10 +4,6 @@
 <head>
   <style>
     body {
-      margin: 0;
-    }
-
-    main {
       width: 100%;
       min-height: 100vh;
       display: flex;
@@ -15,59 +11,55 @@
       align-items: center;
     }
 
-    button {
+    main {
+      position: relative;
+    }
+
+    canvas {
+      opacity: 0.9;
+    }
+
+    .Instructions {
       position: absolute;
-      top: 20px;
-      cursor: pointer;
+      top: 0;
+      left: 0;
     }
 
     .Game {
       position: relative;
-    }
-
-    .Game-frame {
-      opacity: 0.9;
-      border: 10px solid;
-    }
-
-    .Game-live {
-      position: relative;
       z-index: 1;
-      border-color: papayawhip;
+      border: 10px solid papayawhip;
     }
 
-    .Game-capture {
+    .Capture {
       display: none;
       position: absolute;
       top: 0;
       left: 0;
-      border-color: burlywood;
+      border: 10px solid burlywood;
     }
 
-    .has-capture .Game-live {
+    .has-capture .Game {
       margin-top: -256px;
       margin-left: -256px;
     }
 
-    .has-capture .Game-capture {
+    .has-capture .Capture {
       display: block;
-    }
-
-    /* maybe bitsy needs this? */
-    #touchTrigger {
-      display: none;
     }
   </style>
 </head>
 
 <body>
-  <main>
-    <button onclick="capture()">Capture</button>
+  <span class="Instructions">
+    call
+    <pre>capture()</pre>
+    from the console to snap the image buffer
+  </span>
 
-    <div class="Game">
-      <canvas class="Game-live Game-frame" id="game"></canvas>
-      <canvas class="Game-capture Game-frame" id="capture"></canvas>
-    </div>
+  <main>
+    <canvas class="Game" id="game"></canvas>
+    <canvas class="Capture" id="capture"></canvas>
   </main>
 
   <script>
